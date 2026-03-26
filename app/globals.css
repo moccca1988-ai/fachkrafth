@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", var(--font-sans), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-  --font-display: "Geist", var(--font-display), ui-sans-serif, system-ui;
-  
+  --font-sans: "Inter", var(--font-sans), ui-sans-serif, system-ui, -apple-system;
+  --font-display: "Plus Jakarta Sans", var(--font-display), ui-sans-serif, system-ui;
+
+  /* Fachkrafthaus Brand Colors - Digexa Style */
   --color-brand-bg: #FFFFFF;
-  --color-brand-ink: #000000;
-  --color-brand-muted: #666666;
-  --color-brand-accent: #10B981;
-  --color-brand-secondary: #059669;
+  --color-brand-dark: #0D1117;
+  --color-brand-ink: #111827;
+  --color-brand-muted: #6B7280;
+  --color-brand-accent: #22C55E;
+  --color-brand-accent-dark: #15803D;
+  --color-brand-green-bg: #052e16;
   --color-brand-border: rgba(0, 0, 0, 0.08);
-  --color-brand-surface: #F9F9F9;
-  --radius-brand: 2rem;
-  --shadow-brand: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
+  --color-brand-surface: #F9FAFB;
+  --radius-brand: 0.75rem;
+  --shadow-brand: 0 4px 24px -4px rgba(0,0,0,0.08);
 }
 
 @layer base {
@@ -23,112 +26,39 @@
   }
 
   body {
-    background-color: var(--color-brand-bg);
-    color: var(--color-brand-ink);
+    background-color: #ffffff;
+    color: #111827;
     position: relative;
     min-height: 100vh;
-  }
-
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: 
-      linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-    background-position: center center;
-    mask-image: radial-gradient(circle at center, black, transparent 90%);
-    pointer-events: none;
-    z-index: -1;
-  }
-
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    opacity: 0.02;
-    filter: contrast(150%) brightness(1000%);
-    pointer-events: none;
-    z-index: -1;
   }
 }
 
 @layer utilities {
-  .glass-premium {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    box-shadow: var(--shadow-brand);
+  .section-tag {
+    @apply inline-block text-xs font-semibold uppercase tracking-widest text-gray-500 border border-gray-200 rounded-full px-3 py-1 mb-4;
   }
 
-  .glass-accent {
-    background: rgba(16, 185, 129, 0.03);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(16, 185, 129, 0.1);
-  }
-  
-  .text-balance {
-    text-wrap: balance;
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all duration-200;
   }
 
-  .gradient-text {
-    background: linear-gradient(to right, #000000, #10B981);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border border-gray-300 hover:border-green-500 hover:text-green-600 text-gray-700 font-semibold px-6 py-3 rounded-full transition-all duration-200;
   }
 
-  .bento-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 300px);
-    gap: 1.5rem;
+  .card-service {
+    @apply bg-white border border-gray-100 rounded-2xl p-6 hover:shadow-lg hover:border-green-200 transition-all duration-300;
   }
 
-  .border-subtle {
-    border-color: var(--color-brand-border);
+  .numbered-item {
+    @apply flex items-start gap-4 p-4 rounded-xl hover:bg-gray-50 transition-all duration-200;
   }
 
-  .section-alt {
-    background-color: var(--color-brand-surface);
+  .stat-number {
+    @apply text-4xl font-bold text-gray-900 font-display;
   }
 
-  .btn-hover-effect {
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
+  .hero-badge {
+    @apply inline-flex items-center gap-2 bg-green-50 text-green-700 text-sm font-medium px-4 py-2 rounded-full border border-green-100;
   }
-
-  .btn-hover-effect::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 300%;
-    height: 300%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%) scale(0);
-    border-radius: 50%;
-    transition: transform 0.6s ease;
-  }
-
-  .btn-hover-effect:hover::after {
-    transform: translate(-50%, -50%) scale(1);
-  }
-}
-
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.animate-fade-in-up {
-  animation: fade-in-up 0.6s ease-out forwards;
 }
