@@ -293,7 +293,7 @@ export default function Home() {
             <div>
               <h4 className="font-semibold text-white mb-4">Kontakt</h4>
               <p className="text-sm">E-Mail: kontakt@fachkrafthaus.de</p>
-              <p className="text-sm">Telefon: +49 (0) 123 456789</p>
+              <p className="text-sm">Telefon: +49 (0) 251 92875080</p>
             </div>
           </div>
           <div className="border-t border-gray-800 pt-8 text-center text-sm">
